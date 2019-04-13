@@ -1,0 +1,1 @@
+dotnet run -p .\EEV.ServiceDiscovery\EEV.ServiceDiscovery.Host\EEV.ServiceDiscovery.Host.csproj

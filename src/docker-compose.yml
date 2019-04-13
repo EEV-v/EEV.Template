@@ -1,0 +1,32 @@
+version: '3.4'
+
+services:
+
+  sql.data:
+    image: postgres
+  
+  eev.authentication.host:
+    image: eev.authentication.host
+    ports: 
+      - "127.0.0.1:8777:80"
+    # expose:
+    #   - "6379"
+    build:
+      context: .
+      dockerfile: EEV.Authentication/src/EEV.Authentication.Host/Dockerfile
+    # environment: 
+    #   - ASPNETCORE_URLS=http://+:5000 
+    depends_on:
+      - sql.data
+
+  eev.servicediscovery.host:
+    image: eev.servicediscovery.host
+    ports: 
+      - "127.0.0.1:8888:80"
+    # expose:
+    #   - "6379"
+    build:
+      context: .
+      dockerfile: EEV.ServiceDiscovery/src/EEV.ServiceDiscovery.Host/Dockerfile
+    depends_on:
+      - sql.data
